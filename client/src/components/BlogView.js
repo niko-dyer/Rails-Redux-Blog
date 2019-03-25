@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Divider, Header, Container, Button } from 'semantic-ui-react'
+import { Icon, Header, Container, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom'
 import BlogForm from './BlogForm'
 import { deleteBlog } from '../reducers/blogs'
@@ -27,18 +27,23 @@ class BlogView extends React.Component {
         return (
             <Container>
                 <Link to='/blogs'>View All Blogs</Link>
-                <Button onClick={this.toggleForm}>
+                <br />
+                <Button onClick={this.toggleForm} color='blue' inverted style={{ marginTop: '10px', marginBottom: '10px' }} >
                     {showForm ? 'Cancel' : 'Edit'}
                 </Button>
-                <Button onClick={this.handleDelete}>
+                <br />
+                <Button onClick={this.handleDelete} color='red' inverted >
                     Delete
                 </Button>
                 {showForm ?
                     <BlogForm {...blog} closeForm={this.toggleForm} />
                     :
                     <div>
-                        <Header as='h3' textAlign='center'>{blog.name}</Header>
-                        <Header as='h2' textAlign='center'>{blog.body}</Header>
+                        <Header as='h1' icon textAlign='center'>
+                            <Icon name='podcast' circular />
+                            {blog.name}</Header>
+                        <hr />
+                        <Header as='h4' textAlign='center'>{blog.body}</Header>
                     </div>
                 }
             </Container>

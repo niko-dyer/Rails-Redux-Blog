@@ -3,7 +3,7 @@ import BlogForm from './BlogForm'
 import { connect } from 'react-redux'
 import { getBlogs } from '../reducers/blogs'
 import { Link } from 'react-router-dom'
-import { Container, Header, Card, Button } from 'semantic-ui-react'
+import { Container, Header, Card, Button, Icon } from 'semantic-ui-react'
 
 class BlogList extends React.Component {
     state = { showForm: false }
@@ -43,9 +43,15 @@ class BlogList extends React.Component {
 
         return (
             <Container>
-                <Header as='h3' textAlign='center'>Blogs</Header>
-                <Button onClick={this.toggleForm}>
-                    {showForm ? 'Hide Form' : 'Show Form'}
+                <Header as='h3' icon textAlign='center'>
+                    <Icon name='sitemap' circular /> 
+                    Blogs
+                </Header>
+                <Button onClick={this.toggleForm} animated='fade' style={{marginBottom: '10px'}} color='orange' inverted >
+                    <Button.Content visible>{showForm ? 'Hide Form' : 'Show Form'}</Button.Content>
+                    <Button.Content hidden>
+                        <Icon name='angle double down' />
+                    </Button.Content>
                 </Button>
                 {showForm ?
                     <BlogForm closeForm={this.toggleForm} />
